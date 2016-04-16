@@ -1,0 +1,20 @@
+<html>
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+<script src='\js\mainController.js'></script>
+<head>
+<h1>WELCOME</h1>
+</head>
+<body ng-app="main">
+  <div ng-controller="cntrl">
+    <form ng-submit="clickFunc">
+    <input type="text" name="fname" placeholder="First Name" ng-bind="fname">
+    <input type="text" name="lname" placeholder="Last Name" ng-bind="lname">
+    <input type="text" name="userName" placeholder="Username" ng-bind="usern">
+    <input type="password" name="password" placeholder="password" ng-bind="pwd">
+    <input type="submit" value="Submit" ng-click="clickFunc">
+    <form>
+  </div>
+</body>
+
+
+</html>
