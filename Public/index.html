@@ -1,43 +1,31 @@
-<!DOCTYPE html>
+<!--main.html-->
 <html>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.js"></script>
-    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-resource.js"></script>
-    <!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-
-<script src='js/mainController.js' type="text/javascript"></script>
-
-<head>
-
-</head>
-<body ng-app="main">
-  <div ng-controller="signUp">
-
-     <!---------sign-up form ------>
-      <div class="Container">
-          <div class="col-md-8 col-md-offset-2">
-    <form class='form-horizontal'>
-        <div class="form-group">
-            <input type="text" class="form-control" name="fname" placeholder="First Name" ng-model="user.firstName">
-        </div>
-        <div class="form-group">
-    <input type="text" class="form-control" name="lname" placeholder="Last Name" ng-model="user.lastName">
-        </div>
-        <div class=form-group>
-            <input type="text" class="form-control" name="userName" placeholder="Username" ng-model="user.userName"></div>
-        <div class="form-group">
-    <input type="password"  class="form-control" name="password" placeholder="password" ng-model="user.Password">
-        </div>
-    <input class="btn btn-success" type="submit" value="Submit" ng-click="clickFunc()">
-
+  <head>
+    <title>Chirp</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0/angular.min.js"></script>
+    <script src="javascripts/chirpApp.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="stylesheets/style.css">
+  </head>
+  <body ng-app="chirpApp">
+    <div id='main' class="container" ng-controller="mainController">
+      <div class="col-md-offset-2 col-md-8">
+        <div class="clearfix">
+          <form ng-Submit="post()">
+            <input required type="text" class="form-control" placeholder="Your name" ng-model="newPost.created_by" />
+            <textarea required class="form-control" maxlength="200" rows="3" placeholder="Say something" ng-model="newPost.text"></textarea>
+            <input class="btn submit-btn pull-right" type="submit" value="Chirp!" />
           </form>
-      </div></div>
-
-  </div>
-
-
-</body>
-
-
+          <div id="post-stream">
+            <h4>Chirp Feed</h4>
+                <div class="post" ng-repeat="post in posts | orderBy:'created_at':true" ng-class-odd="'odd'" ng-class-even="'even'">
+                  <p>{{post.text}}</p>
+                <small>Posted by @{{post.created_by}}</small>
+                <small class="pull-right">{{post.created_at | date:"h:mma 'on' MMM d, y"}}</small>
+                </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
 </html>

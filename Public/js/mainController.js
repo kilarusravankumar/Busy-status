@@ -1,22 +1,12 @@
-var app=angular.module('main',['ngResource'])
+var app = angular.module('chirpApp', []);
 
+app.controller('mainController', function($scope){
+  $scope.posts = [];
+  $scope.newPost = {created_by: '', text: '', created_at: ''};
 
-app.controller('cntrl',function($scope){
-
-
-
-
-  });
-
-app.controller('signUp',['$resource','$scope',function($scope,$resource){
-    var todo=$resource('/todolists');
-    $scope.clickFunc=function(){
-    alert("Hello "+$scope.user.firstName+" "+$scope.user.lastName+" your user name is "+$scope.user.userName);
-
-$scope.user.$save();
+  $scope.post = function(){
+    $scope.newPost.created_at = Date.now();
+    $scope.posts.push($scope.newPost);
+    $scope.newPost = {created_by: '', text: '', created_at: ''};
   };
-
-}])
-
-
-
+});
